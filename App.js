@@ -10,54 +10,49 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TextInput
 } from 'react-native';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+// class Greeting extends Component {
+//   render() {
+//     return (
+//       <Text> Greetings {this.props.name}!</Text>
+//     );
+//   }
+// }
+//
+// export default class LotsOfGreetings extends Component {
+//   render() {
+//     return(
+//       <View style ={{alignItems: 'center'}}>
+//         <Greeting name='David Hodge' />
+//         <Greeting name='Tradd Spector' />
+//         <Greeting name='Laurence Shields' />
+//         <Greeting name='Alex Willich' />
+//         <Greeting name='Mr. Vidal'/>
+//       </View>
+//     );
+//   }
+//   }
 
-    this.state = { shouldHideButton: false };
-  }
-
-changeText() {
-  //print something
-  console.log("Button Pressed!")
-
-  // Hide text
-  this.setState({
-    shouldHideButton: true
-  });
-}
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.paragraph}>Hello</Text>
-        <TouchableHighlight hidden={this.state.shouldHideButton} onPress={this.changeText.bind(this)}> 
-          <Text> Change Text </Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-}
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  export default class GradeTranslator extends Component {
+    constructor(props) {
+      super (props);
+      this.state = {text: ''};
+    }
+      render () {
+        return(
+          //<Text> Mr. Vidal</Text>
+          <View style={{padding: 10}}>
+            <TextInput
+              style={{height:40}}
+              placeholder="Type my Grade!"
+              onChangeText={(text) => this.setState({text})}
+            />
+            <Text style={{padding: 110, fontSize: 50}}>
+              {this.state.text.split(' ').map((word) => word && '100%').join(' ')}
+            </Text>
+          </View>
+        );
+      }
+    }
